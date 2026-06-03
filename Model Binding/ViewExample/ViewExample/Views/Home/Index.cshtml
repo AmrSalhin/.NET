@@ -1,0 +1,53 @@
+﻿@using ViewExample.Models;
+@{
+    string appTitle = "Asp.Net Core App";
+    List<Person> Pepole = new List<Person>()
+    {
+        new Person(){Name = "John", DateOfBirth = Convert.ToDateTime("1-1-2000"), Gender = Gender.Male},
+        new Person(){Name = "Linda", DateOfBirth = Convert.ToDateTime("12/5/2005"), Gender = Gender.Female}
+    };
+}
+
+@{
+    double? Getage(DateTime? birthDate)
+    {
+        if(birthDate.HasValue)
+        {
+            return Math.Round((DateTime.Now - birthDate.Value).TotalDays / 365);
+        }
+        else
+        {
+            return null;
+        }
+    }
+}
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> @appTitle</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <h1>Welcome</h1>
+
+        @foreach(var person in Pepole)
+    {
+        <div>
+            @person.Name
+        <span>, </span>
+        <span>@person.Gender</span>
+        @if(person.DateOfBirth.HasValue)
+        {
+            <span>@person.DateOfBirth.Value.ToString("MM/dd/yyyy")</span>
+            <span>,  @Getage(person.DateOfBirth) Years old</span>
+        }
+        </div>
+    }
+
+
+    </body>
+
+</html>
