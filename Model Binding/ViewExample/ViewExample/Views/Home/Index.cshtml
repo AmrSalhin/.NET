@@ -1,11 +1,6 @@
 ﻿@using ViewExample.Models;
 @{
-    string appTitle = "Asp.Net Core App";
-    List<Person> Pepole = new List<Person>()
-    {
-        new Person(){Name = "John", DateOfBirth = Convert.ToDateTime("1-1-2000"), Gender = Gender.Male},
-        new Person(){Name = "Linda", DateOfBirth = Convert.ToDateTime("12/5/2005"), Gender = Gender.Female}
-    };
+    
 }
 
 @{
@@ -27,26 +22,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> @appTitle</title>
+        <title> @ViewBag.appTitle</title>
         <meta charset="utf-8"/>
+        <link href="~/StyleSheet.css" rel="stylesheet"/>
     </head>
     <body>
-        <h1>Welcome</h1>
+        <div class="page-content"> 
 
-        @foreach(var person in Pepole)
-    {
-        <div>
-            @person.Name
-        <span>, </span>
-        <span>@person.Gender</span>
-        @if(person.DateOfBirth.HasValue)
+        @foreach (Person person in ViewBag.Pepole)
         {
-            <span>@person.DateOfBirth.Value.ToString("MM/dd/yyyy")</span>
-            <span>,  @Getage(person.DateOfBirth) Years old</span>
+                <div class="box float-left w-50">
+                    <h3>@person.Name</h3>
+                    <table class="table w-100">
+                        <tbody>
+                            <tr>
+                                <td>Gender</td>
+                                <td>@person.Gender</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td>@person.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <a href="Person-Details/@person.Name">Details</a>
+                </div>
         }
+        
         </div>
-    }
-
+   
 
     </body>
 
