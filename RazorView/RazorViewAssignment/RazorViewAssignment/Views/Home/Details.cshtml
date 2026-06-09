@@ -1,0 +1,32 @@
+﻿@model CityWeather
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Model.CityName City Weather</title>
+        <meta charset="utf-8"/>
+        <link href="~/StyleSheet.css" rel="stylesheet" />
+        </head>
+    <body>
+        <div class="navbar-brand">
+            <h1>Weather</h1>
+        </div>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 100px; margin-left: 25px; justify-content: center">
+    <div class="box" style="display: flex; width: 320px; height: 130px; margin: 0; padding: 0; gap: 20px; margin-top: 100px;">
+            <div style="flex: 1.2; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                <h2 style="font-size: 1.1em;">@Model.CityName</h2>
+                <span style="font-size: 0.75em; color: #444;">@Model.DateAndTime?.ToString("dd MMM yyyy")</span>
+                <span style="font-size: 0.75em; color: #444;">@Model.DateAndTime?.ToString("hh:mm tt")</span>
+                
+            </div>
+            <div style="width: 1px; height: 70%; background-color: rgba(0,0,0,0.15); align-self: center;"></div>
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 1.8em; font-weight: bold;">@Model.TemperatureFahrenheit<span style="font-size: 0.6em;color: #444;  vertical-align: super;">°F</span></span>
+            </div>
+        </div>
+        </div>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; margin-left: 25px; justify-content: center">
+    <a href="/" style="font-size: 0.75em; color: #1383a4; text-decoration: none;">Back To Weather Home Page</a>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CityWeather>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather</title>
+        <meta charset="utf-8" />
+        <link href="~/StyleSheet.css" rel="stylesheet"/>
+    </head>
+    <body>
+    @{
+        string[] cardColors = { "background-color: #72b9e9;", "background-color: #e2f997;", "background-color: #f9ca79;" };
+    }
+        <div class="navbar-brand">
+            <h1>Weather</h1>
+        </div>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 100px; margin-left: 25px">
+        @foreach (var city in Model)
+        {
+            string currentBackground;
+            if(city.TemperatureFahrenheit < 44)
+            {
+                currentBackground = cardColors[0];
+            }
+            else if(city.TemperatureFahrenheit < 74)
+            {
+                currentBackground = cardColors[1];
+            }
+            else
+            {
+                currentBackground = cardColors[2];
+            }
+            <div class="box " style="@currentBackground display: flex; width: 320px; height: 130px; margin: 0; padding: 0;">
+                <div style="flex: 1.2; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <h2 style="font-size: 1.1em;">@city.CityName</h2>
+                    <span style="font-size: 0.75em; color: #444; font-weight: bold">@city.DateAndTime?.ToString("hh:mm tt")</span>
+                    <a href="/weather/@city.CityUniqueCode" style="font-size: 0.75em; color: #1383a4; text-decoration: none;">Details</a>
+                </div>
+                <div style="width: 1px; height: 70%; background-color: rgba(0,0,0,0.15); align-self: center;"></div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center">
+                    <span style="font-size: 1.8em; font-weight: bold">@city.TemperatureFahrenheit<span style="font-size: 0.6em; color: #444; vertical-align: super;">°F</span></span>
+                </div>
+            </div>
+        }
+
+         </div>
+    </body>
+</html>
